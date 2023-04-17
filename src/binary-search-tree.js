@@ -7,15 +7,31 @@ const { NotImplementedError } = require('../extensions/index.js');
 * using Node from extensions
 */
 class BinarySearchTree {
-
-  root() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor() {
+    this.treeRoot = null;
   }
 
-  add(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  root() {
+    return this.treeRoot;
+  }
+
+  add(data) {
+    this.treeRoot = addNode(this.treeRoot, data);
+
+    function addNode(node, data) {
+      if (!node) {
+        return new Node(data);
+      }
+      if (node.data === data) {
+        return node;
+      }
+      if (data > node.data) {
+        node.right = addNode(node.right, data);
+      } else {
+        node.left = addNode(node.left, data);
+      }
+      return node;
+    }
   }
 
   has(/* data */) {
@@ -34,16 +50,11 @@ class BinarySearchTree {
   }
 
   min() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
   }
 
   max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
   }
 }
-
 module.exports = {
   BinarySearchTree
 };
